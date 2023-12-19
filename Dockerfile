@@ -1,6 +1,8 @@
 FROM python:3.8-slim-buster
-COPY . /app
-RUN pip3 install -r /app/requirements.txt
-EXPOSE 5000
+LABEL Maintainer="leebk1124@gmail.com"
 WORKDIR /app
-CMD ["python3", "-m", "flask", "run"]
+COPY app.py ./
+COPY requirements.txt ./
+RUN pip3 install -r /app/requirements.txt
+EXPOSE 4000
+CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0", "--port=4000"]
